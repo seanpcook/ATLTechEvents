@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     env:
-      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      DATABASE_URL: ${{ vars.DATABASE_URL }}
       ALLOW_INSECURE_TLS: "true"
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
     steps:
