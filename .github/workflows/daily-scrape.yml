@@ -1,34 +1,39 @@
 name: Daily Scrape
 
 on:
-    schedule:
-        - cron: "15 10 * * *"
-    workflow_dispatch:
+  schedule:
+    - cron: "15 10 * * *"
+  workflow_dispatch:
 
 jobs:
-    scrape:
-        runs-on: ubuntu-latest
-        timeout-minutes: 20
-        steps:
-            - name: Checkout repository
-              uses: actions/checkout@v4
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      ALLOW_INSECURE_TLS: "true"
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
 
-            - name: Setup Node.js
-              uses: actions/setup-node@v4
-              with:
-                  node-version: 20
-                  cache: npm
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: 20
+          cache: npm
 
-            - name: Install dependencies
-              run: npm ci
+      - name: Install dependencies
+        run: npm ci
 
-            - name: Generate Prisma client
-              run: npx prisma generate
+      - name: Generate Prisma client
+        run: npx prisma generate
 
-            - name: Install Chromium for Playwright fallback
-              run: npx playwright install --with-deps chromium
+      - name: Apply Prisma migrations
+        run: npx prisma migrate deploy
 
-            - name: Run scraper
-              run: npm run scrape
-              env:
-                  DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      - name: Install Chromium for Playwright fallback
+        run: npx playwright install --with-deps chromium
+
+      - name: Run scraper
+        run: npm run scrape
