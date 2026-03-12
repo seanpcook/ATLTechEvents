@@ -1,0 +1,31 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Organizer {
+  TECH_SQUARE_ATL
+  ATLANTA_TECH_VILLAGE
+  ATDC
+}
+
+model Event {
+  id               String   @id
+  title            String
+  description      String
+  startDatetime    DateTime @map("start_datetime")
+  endDatetime      DateTime? @map("end_datetime")
+  timezone         String
+  locationName     String?  @map("location_name")
+  locationAddress  String?  @map("location_address")
+  organizer        Organizer
+  sourceUrl        String   @map("source_url")
+  sourceEventId    String?  @map("source_event_id")
+  lastSeenAt       DateTime @map("last_seen_at")
+
+  @@map("events")
+}

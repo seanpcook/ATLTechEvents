@@ -1,0 +1,137 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --card-bg: #ffffff;
+  --border-subtle: #e5e7eb;
+  --text-primary: #020617;
+  --text-secondary: #475569;
+  --accent: #4f46e5;
+  --danger: #ef4444;
+  --org-tech-square-bg: rgba(37, 99, 235, 0.16);
+  --org-tech-square-text: #1d4ed8;
+  --org-atdc-bg: rgba(16, 185, 129, 0.18);
+  --org-atdc-text: #047857;
+  --org-atv-bg: rgba(234, 179, 8, 0.2);
+  --org-atv-text: #b45309;
+}
+
+.dark {
+  --bg-primary: #1e1e1e;
+  --bg-secondary: #252526;
+  --card-bg: #1e1e1e;
+  --border-subtle: #3c3c3c;
+  --text-primary: #d4d4d4;
+  --text-secondary: #9da3af;
+  --accent: #3794ff;
+  --danger: #f14c4c;
+  --org-tech-square-bg: rgba(59, 130, 246, 0.22);
+  --org-tech-square-text: #93c5fd;
+  --org-atdc-bg: rgba(16, 185, 129, 0.22);
+  --org-atdc-text: #6ee7b7;
+  --org-atv-bg: rgba(234, 179, 8, 0.25);
+  --org-atv-text: #fde68a;
+}
+
+body {
+  @apply bg-bg-primary text-text-primary font-sans;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.event-description p {
+  @apply mb-2 last:mb-0;
+}
+
+.event-description ul {
+  @apply list-disc pl-5 mb-2;
+}
+
+.event-description ol {
+  @apply list-decimal pl-5 mb-2;
+}
+
+.event-description li {
+  @apply mb-1;
+}
+
+.event-description a {
+  @apply text-accent hover:underline;
+}
+
+.org-pill {
+  @apply inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold;
+}
+
+.pill-tech-square {
+  background-color: var(--org-tech-square-bg);
+  color: var(--org-tech-square-text);
+}
+
+.pill-atdc {
+  background-color: var(--org-atdc-bg);
+  color: var(--org-atdc-text);
+}
+
+.pill-atv {
+  background-color: var(--org-atv-bg);
+  color: var(--org-atv-text);
+}
+
+.fc {
+  font-family: inherit;
+  font-size: 0.875rem;
+}
+
+.fc .fc-toolbar {
+  @apply flex flex-wrap items-center justify-between gap-2 mb-4 text-text-primary;
+}
+
+.fc .fc-toolbar-title {
+  @apply text-lg font-semibold text-text-primary;
+}
+
+.fc .fc-button {
+  @apply rounded-md border border-border-subtle bg-card-bg px-3 py-1 text-sm font-semibold text-text-secondary hover:bg-bg-secondary;
+}
+
+.fc .fc-button-primary:not(:disabled).fc-button-active {
+  @apply bg-accent text-white border-accent;
+}
+
+.fc .fc-daygrid-day {
+  @apply border border-border-subtle;
+}
+
+.fc .fc-daygrid-day-number {
+  @apply text-sm text-text-secondary;
+}
+
+.fc .fc-event {
+  @apply rounded-md bg-accent text-white text-sm px-1 py-0.5;
+}
+
+.fc .fc-list-day-cushion {
+  @apply bg-bg-secondary text-text-secondary text-sm font-semibold;
+}
+
+.fc .fc-list-event {
+  @apply text-text-primary;
+}
+
+.fc .fc-list-event:hover td {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+.fc .fc-list-event:hover a {
+  color: var(--text-primary);
+}

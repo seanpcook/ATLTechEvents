@@ -1,0 +1,44 @@
+{
+  "name": "atltechevents",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "scrape": "TS_NODE_COMPILER_OPTIONS=\"{\\\"module\\\":\\\"CommonJS\\\"}\" ts-node --transpile-only -r tsconfig-paths/register scripts/scrape.ts",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev"
+  },
+  "dependencies": {
+    "@fullcalendar/core": "^6.1.11",
+    "@fullcalendar/daygrid": "^6.1.11",
+    "@fullcalendar/list": "^6.1.11",
+    "@fullcalendar/react": "^6.1.11",
+    "@prisma/client": "^5.9.1",
+    "@vercel/analytics": "^0.1.11",
+    "axios": "^1.6.7",
+    "cheerio": "1.0.0-rc.12",
+    "luxon": "^3.4.4",
+    "next": "12.3.4",
+    "playwright": "1.42.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "@types/luxon": "^3.3.8",
+    "@types/node": "^20.11.5",
+    "@types/react": "^18.2.48",
+    "@types/react-dom": "^18.2.18",
+    "autoprefixer": "^10.4.17",
+    "eslint": "^8.56.0",
+    "eslint-config-next": "12.3.4",
+    "postcss": "^8.4.33",
+    "prisma": "^5.9.1",
+    "tailwindcss": "^3.4.1",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.3.3"
+  }
+}
