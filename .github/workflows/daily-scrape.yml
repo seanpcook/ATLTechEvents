@@ -32,8 +32,5 @@ jobs:
       - name: Apply Prisma migrations
         run: npx prisma migrate deploy
 
-      - name: Install Chromium for Playwright fallback
-        run: npx playwright install --with-deps chromium
-
       - name: Run scraper
         run: npm run scrape
