@@ -11,18 +11,30 @@ Unified, read-only calendar for Atlanta tech events aggregated from Tech Square 
 
 ## Getting Started
 
-1. Create a Postgres database and set `DATABASE_URL`.
-2. Install dependencies.
-3. Run Prisma migrations and generate the client.
-4. Start the dev server.
+1. Get your Neon connection string from this project:
+   - Org: org-solitary-mouse-70844258
+   - Project: ancient-frost-89263007 (ATLTechEvents)
+   - Recommended branch for local development: dev (br-falling-mountain-a8wrnxe3)
+2. Copy .env.example to .env and set DATABASE_URL.
+3. Install dependencies.
+4. Run Prisma migrations and generate the client.
+5. Start the dev server.
 
 ## Environment
 
-Create a `.env` file:
+Create a .env file from .env.example. Use a Neon pooled connection string for serverless-safe local and deployment behavior.
+
+Example format:
 
 ```
-DATABASE_URL="postgresql://USER:PASSWORD@HOST:PORT/atltechevents"
+DATABASE_URL="postgresql://<user>:<password>@<endpoint>-pooler.<region>.azure.neon.tech/neondb?sslmode=require"
 ```
+
+Notes:
+
+- Keep sslmode=require for Neon.
+- Use the branch-specific connection string from the Neon Console so migrations and app reads target the intended branch.
+- This project currently uses a single DATABASE_URL for both Prisma migrate and runtime reads.
 
 ## Scripts
 

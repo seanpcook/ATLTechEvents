@@ -227,7 +227,8 @@ const buildRecurringOccurrences = (
     if (dt < startThreshold) return true;
     if (dt > endBoundary) return false;
     if (exceptionSet.has(dt.toISO())) return true;
-    if (exceptionDateSet.has(dt.toISODate())) return true;
+    const occurrenceDate = dt.toISODate();
+    if (occurrenceDate && exceptionDateSet.has(occurrenceDate)) return true;
     occurrences.push(dt);
     return true;
   };
@@ -280,7 +281,8 @@ const buildRecurringOccurrences = (
     while (monthCursor <= endBoundary) {
       const firstWeekday = monthCursor.weekday;
       const day = 1 + ((weekday - firstWeekday + 7) % 7) + (ordinal - 1) * 7;
-      if (day <= monthCursor.daysInMonth) {
+      const daysInMonth = monthCursor.daysInMonth ?? 31;
+      if (day <= daysInMonth) {
         const occurrence = monthCursor.set({ day, ...timeParts });
         const shouldContinue = pushOccurrence(occurrence);
         if (!shouldContinue) return occurrences;
@@ -406,7 +408,7 @@ const extractElfsightEvents = (data: unknown): ScrapedEvent[] => {
 
   return events
     .flatMap((event): ScrapedEvent[] => {
-      const timezone = event.timeZone || "America/New_York";
+      const timezone: "America/New_York" = "America/New_York";
       const startInfo = parseElfsightDateTimeValue(event.start, timezone);
       if (!startInfo) return [];
       const endInfo = parseElfsightDateTimeValue(event.end, timezone);
