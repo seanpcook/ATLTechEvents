@@ -60,4 +60,3 @@ The workflow runs daily and can also be triggered manually from the Actions tab.
 
 - Include virtual/online events or only Atlanta-based physical events?
 - Should past events be hidden entirely or accessible via a filter?
-- Branding: neutral or explicitly “ATL Tech Community”?
